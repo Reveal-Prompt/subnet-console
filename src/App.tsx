@@ -23,7 +23,8 @@ const App = () => (
           <Route path="/" element={<Dashboard />} />
           <Route path="/leaderboard" element={<Leaderboard />} />
           <Route path="/validators" element={<Validators />} />
-          <Route path="/agent-detail" element={<AgentDetail />} />
+          <Route path="/prompt-validator" element={<AgentDetail />} />
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>

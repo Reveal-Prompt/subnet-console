@@ -8,7 +8,7 @@ const Header = () => {
     { path: "/", label: "DASHBOARD" },
     { path: "/leaderboard", label: "LEADERBOARD" },
     { path: "/validators", label: "VALIDATORS" },
-    { path: "/agent-detail", label: "AGENT DETAIL" },
+    { path: "/prompt-validator", label: "PROMPT VALIDATOR" },
   ];
 
   return (

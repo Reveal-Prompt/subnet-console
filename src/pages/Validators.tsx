@@ -10,7 +10,7 @@ const Validators = () => {
           <div className="mb-8">
             <h1 className="text-2xl font-semibold mb-2">VALIDATOR ACTIVITY</h1>
             <p className="text-sm text-muted-foreground">
-              Reviewing validator shard ingestion for the past 72 hours.
+              Real-time monitoring of validator performance and consensus metrics over the past 72 hours.
             </p>
           </div>
 
@@ -27,30 +27,40 @@ const Validators = () => {
                       Last seen {validator.lastSeen}
                     </p>
                     <p className="text-xs text-muted-foreground mt-1">
-                      {validator.shards} shards · {validator.miners} miners
+                      {validator.validations} validations · {validator.miners} active miners
                     </p>
                   </div>
 
-                  <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 text-center lg:text-right">
+                  <div className="grid grid-cols-2 lg:grid-cols-5 gap-6 text-center lg:text-right">
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                        Avg Score: {validator.avgScore}
+                        Avg Score
                       </p>
+                      <p className="font-semibold text-accent">{validator.avgScore}%</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                        Median: {validator.median}
+                        Median
                       </p>
+                      <p className="font-semibold">{validator.median}%</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                        Avg Accuracy: {validator.avgAccuracy}
+                        Latency
                       </p>
+                      <p className="font-semibold font-mono text-sm">{validator.avgLatency}</p>
                     </div>
                     <div>
                       <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
-                        Avg Latency: {validator.avgLatency}
+                        Consensus
                       </p>
+                      <p className="font-semibold">{validator.consensusRate}%</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">
+                        Uptime
+                      </p>
+                      <p className="font-semibold">{validator.uptime}%</p>
                     </div>
                   </div>
 
