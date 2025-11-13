@@ -73,77 +73,77 @@ const validators = [
 
 const Validators = () => {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-white">
       <div className="max-w-[1400px] mx-auto p-8 space-y-6">
         {/* Header */}
-        <div className="mb-10">
-          <h1 className="text-3xl font-semibold text-slate-900 mb-1">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Validator Activity
           </h1>
-          <p className="text-slate-500 text-sm">Real-time monitoring of validator performance and consensus metrics over the past 72 hours</p>
+          <p className="text-gray-600 text-sm">Real-time monitoring of validator performance and consensus metrics over the past 72 hours</p>
         </div>
 
         {/* Stats Overview */}
         <div className="grid grid-cols-4 gap-6 mb-6">
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <div className="text-xs font-medium text-slate-500 mb-3">ACTIVE VALIDATORS</div>
-            <div className="text-3xl font-semibold text-slate-900">{validators.length}</div>
-            <div className="text-xs text-slate-500 mt-2">Currently online</div>
+          <Card className="bg-[#6366F11A] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-3">ACTIVE VALIDATORS</div>
+            <div className="text-3xl font-bold text-gray-900">{validators.length}</div>
+            <div className="text-xs text-gray-600 mt-2">Currently online</div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <div className="text-xs font-medium text-slate-500 mb-3">TOTAL VALIDATIONS</div>
-            <div className="text-3xl font-semibold text-slate-900">
+          <Card className="bg-[#FEEFFE] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-3">TOTAL VALIDATIONS</div>
+            <div className="text-3xl font-bold text-gray-900">
               {(validators.reduce((acc, v) => acc + v.validations, 0) / 1000).toFixed(1)}K
             </div>
-            <div className="text-xs text-slate-500 mt-2">Last 72 hours</div>
+            <div className="text-xs text-gray-600 mt-2">Last 72 hours</div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <div className="text-xs font-medium text-slate-500 mb-3">AVG UPTIME</div>
-            <div className="text-3xl font-semibold text-slate-900">
+          <Card className="bg-[#6366F11A] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-3">AVG UPTIME</div>
+            <div className="text-3xl font-bold text-gray-900">
               {(validators.reduce((acc, v) => acc + v.uptime, 0) / validators.length).toFixed(1)}%
             </div>
-            <div className="text-xs text-slate-500 mt-2">Network average</div>
+            <div className="text-xs text-gray-600 mt-2">Network average</div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <div className="text-xs font-medium text-slate-500 mb-3">AVG CONSENSUS</div>
-            <div className="text-3xl font-semibold text-slate-900">
+          <Card className="bg-[#FEEFFE] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-3">AVG CONSENSUS</div>
+            <div className="text-3xl font-bold text-gray-900">
               {(validators.reduce((acc, v) => acc + v.consensusRate, 0) / validators.length).toFixed(1)}%
             </div>
-            <div className="text-xs text-slate-500 mt-2">Network average</div>
+            <div className="text-xs text-gray-600 mt-2">Network average</div>
           </Card>
         </div>
 
         {/* Validators List */}
-        <Card className="bg-white border border-slate-200 shadow-sm">
-          <div className="p-6 border-b border-slate-200">
+        <Card className="bg-white shadow-md">
+          <div className="p-6 border-b border-gray-200">
             <div className="flex justify-between items-center">
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 mb-1">Validator Nodes</h2>
-                <p className="text-xs text-slate-500">Detailed performance metrics for each validator</p>
+                <h2 className="text-sm font-semibold text-gray-900 mb-1">Validator Nodes</h2>
+                <p className="text-xs text-gray-500">Detailed performance metrics for each validator</p>
               </div>
-              <Button variant="outline" className="text-xs border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+              <Button variant="outline" className="text-xs border-blue-300 text-blue-600 hover:bg-blue-50">
                 Refresh
               </Button>
             </div>
           </div>
 
-          <div className="divide-y divide-slate-100">
+          <div className="divide-y divide-gray-100">
             {validators.map((validator, idx) => (
               <div
                 key={validator.id}
-                className="p-6 hover:bg-slate-50 transition-colors"
+                className="p-6 hover:bg-gradient-to-r hover:from-blue-50 hover:to-pink-50 transition-colors"
               >
                 <div className="flex flex-col lg:flex-row lg:items-center gap-6">
                   {/* Validator Info */}
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-3 mb-2">
-                      <span className="text-lg font-semibold text-slate-900">#{idx + 1}</span>
-                      <h3 className="font-mono text-sm font-medium text-slate-900 truncate">{validator.id}</h3>
+                      <span className="text-lg font-semibold text-gray-900">#{idx + 1}</span>
+                      <h3 className="font-mono text-sm font-medium text-gray-900 truncate">{validator.id}</h3>
                     </div>
-                    <div className="flex items-center gap-4 text-xs text-slate-500">
+                    <div className="flex items-center gap-4 text-xs text-gray-500">
                       <span>Active {validator.lastSeen}</span>
                       <span>•</span>
                       <span>{validator.validations.toLocaleString()} validations</span>
@@ -155,24 +155,24 @@ const Validators = () => {
                   {/* Metrics Grid */}
                   <div className="grid grid-cols-3 lg:grid-cols-5 gap-6">
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Avg Score</p>
-                      <p className="text-sm font-semibold text-slate-900">{validator.avgScore}%</p>
+                      <p className="text-xs text-gray-500 mb-1">Avg Score</p>
+                      <p className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">{validator.avgScore}%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Median</p>
-                      <p className="text-sm font-semibold text-slate-900">{validator.median}%</p>
+                      <p className="text-xs text-gray-500 mb-1">Median</p>
+                      <p className="text-sm font-semibold text-gray-900">{validator.median}%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Latency</p>
-                      <p className="text-sm font-semibold font-mono text-slate-900">{validator.avgLatency}</p>
+                      <p className="text-xs text-gray-500 mb-1">Latency</p>
+                      <p className="text-sm font-semibold font-mono text-gray-900">{validator.avgLatency}</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Consensus</p>
-                      <p className="text-sm font-semibold text-slate-900">{validator.consensusRate}%</p>
+                      <p className="text-xs text-gray-500 mb-1">Consensus</p>
+                      <p className="text-sm font-semibold text-gray-900">{validator.consensusRate}%</p>
                     </div>
                     <div>
-                      <p className="text-xs text-slate-500 mb-1">Uptime</p>
-                      <p className="text-sm font-semibold text-green-600">{validator.uptime}%</p>
+                      <p className="text-xs text-gray-500 mb-1">Uptime</p>
+                      <p className="text-sm font-semibold text-blue-600">{validator.uptime}%</p>
                     </div>
                   </div>
 
@@ -180,7 +180,7 @@ const Validators = () => {
                   <Button 
                     variant="outline" 
                     size="sm" 
-                    className="text-xs border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-slate-900 lg:ml-4"
+                    className="text-xs border-blue-300 text-blue-600 hover:bg-blue-50 lg:ml-4"
                   >
                     View Details
                   </Button>
@@ -192,46 +192,46 @@ const Validators = () => {
 
         {/* Performance Breakdown */}
         <div className="grid grid-cols-3 gap-6 mt-6">
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">Top Performers</h3>
+          <Card className="bg-[#6366F11A] shadow-md p-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Top Performers</h3>
             <div className="space-y-3">
               {validators.slice(0, 3).map((v, idx) => (
-                <div key={v.id} className="flex items-center justify-between">
+                <div key={v.id} className="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm">
                   <div className="flex items-center gap-2 min-w-0">
                     <span className="text-sm">{idx === 0 ? '🥇' : idx === 1 ? '🥈' : '🥉'}</span>
-                    <span className="font-mono text-xs text-slate-900 truncate">{v.id.substring(0, 20)}...</span>
+                    <span className="font-mono text-xs text-gray-900 truncate">{v.id.substring(0, 20)}...</span>
                   </div>
-                  <span className="text-sm font-semibold text-slate-900">{v.avgScore}%</span>
+                  <span className="text-sm font-semibold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">{v.avgScore}%</span>
                 </div>
               ))}
             </div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">Fastest Response</h3>
+          <Card className="bg-[#FEEFFE] shadow-md p-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Fastest Response</h3>
             <div className="space-y-3">
               {[...validators].sort((a, b) => parseInt(a.avgLatency) - parseInt(b.avgLatency)).slice(0, 3).map((v, idx) => (
-                <div key={v.id} className="flex items-center justify-between">
+                <div key={v.id} className="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-sm font-semibold text-slate-500">#{idx + 1}</span>
-                    <span className="font-mono text-xs text-slate-900 truncate">{v.id.substring(0, 20)}...</span>
+                    <span className="text-sm font-semibold text-gray-500">#{idx + 1}</span>
+                    <span className="font-mono text-xs text-gray-900 truncate">{v.id.substring(0, 20)}...</span>
                   </div>
-                  <span className="text-sm font-mono font-semibold text-slate-900">{v.avgLatency}</span>
+                  <span className="text-sm font-mono font-semibold text-gray-900">{v.avgLatency}</span>
                 </div>
               ))}
             </div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-6">
-            <h3 className="text-sm font-semibold text-slate-900 mb-4">Highest Uptime</h3>
+          <Card className="bg-[#6366F11A] shadow-md p-6">
+            <h3 className="text-sm font-semibold text-gray-900 mb-4">Highest Uptime</h3>
             <div className="space-y-3">
               {[...validators].sort((a, b) => b.uptime - a.uptime).slice(0, 3).map((v, idx) => (
-                <div key={v.id} className="flex items-center justify-between">
+                <div key={v.id} className="flex items-center justify-between bg-white p-3 rounded-lg shadow-sm">
                   <div className="flex items-center gap-2 min-w-0">
-                    <span className="text-sm font-semibold text-slate-500">#{idx + 1}</span>
-                    <span className="font-mono text-xs text-slate-900 truncate">{v.id.substring(0, 20)}...</span>
+                    <span className="text-sm font-semibold text-gray-500">#{idx + 1}</span>
+                    <span className="font-mono text-xs text-gray-900 truncate">{v.id.substring(0, 20)}...</span>
                   </div>
-                  <span className="text-sm font-semibold text-green-600">{v.uptime}%</span>
+                  <span className="text-sm font-semibold text-blue-600">{v.uptime}%</span>
                 </div>
               ))}
             </div>

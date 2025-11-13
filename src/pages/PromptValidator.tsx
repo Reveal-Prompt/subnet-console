@@ -47,12 +47,14 @@ const AgentDetail = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-white">
       <div className="max-w-[1400px] mx-auto p-8">
-        <Card className="p-8 border border-border">
+        <Card className="p-8 bg-white shadow-md">
           <div className="mb-8">
-            <h1 className="text-2xl font-semibold mb-2">PROMPT VALIDATOR</h1>
-            <p className="text-sm text-muted-foreground">
+            <h1 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent mb-2">
+              PROMPT VALIDATOR
+            </h1>
+            <p className="text-sm text-gray-600">
               Test your prompts against live validators before production deployment. Get instant feedback on quality, efficiency, and consensus scores.
             </p>
           </div>
@@ -61,11 +63,11 @@ const AgentDetail = () => {
             {/* Input Section */}
             <div className="lg:col-span-2 space-y-6">
               <div>
-                <label htmlFor="challenge" className="text-xs font-semibold uppercase tracking-wider mb-2 block">
+                <label htmlFor="challenge" className="text-xs font-semibold uppercase tracking-wider mb-2 block text-gray-700">
                   Challenge Type
                 </label>
                 <Select value={challenge} onValueChange={setChallenge}>
-                  <SelectTrigger id="challenge">
+                  <SelectTrigger id="challenge" className="border-gray-300 focus:border-blue-500">
                     <SelectValue />
                   </SelectTrigger>
                   <SelectContent>
@@ -77,7 +79,7 @@ const AgentDetail = () => {
               </div>
 
               <div>
-                <label htmlFor="prompt-input" className="text-xs font-semibold uppercase tracking-wider mb-2 block">
+                <label htmlFor="prompt-input" className="text-xs font-semibold uppercase tracking-wider mb-2 block text-gray-700">
                   Your Prompt
                 </label>
                 <Textarea
@@ -85,15 +87,15 @@ const AgentDetail = () => {
                   placeholder="Enter your prompt here to test against validators..."
                   value={promptInput}
                   onChange={(e) => setPromptInput(e.target.value)}
-                  className="min-h-[200px] font-mono text-sm"
+                  className="min-h-[200px] font-mono text-sm border-gray-300 focus:border-blue-500"
                 />
-                <p className="text-xs text-muted-foreground mt-2">
+                <p className="text-xs text-gray-500 mt-2">
                   Word count: {promptInput.split(' ').filter(w => w).length} | Character count: {promptInput.length}
                 </p>
               </div>
 
               <Button 
-                className="w-full" 
+                className="w-full bg-gradient-to-r from-blue-500 to-pink-500 hover:from-blue-600 hover:to-pink-600 text-white" 
                 onClick={handleValidate}
                 disabled={isValidating || !promptInput.trim()}
               >
@@ -102,35 +104,37 @@ const AgentDetail = () => {
 
               {/* Results Section */}
               {result && (
-                <div className="space-y-6 pt-6 border-t border-border">
+                <div className="space-y-6 pt-6 border-t border-gray-200">
                   <div>
-                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4">Validation Results</h3>
+                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-gray-700">Validation Results</h3>
                     
                     {/* Overall Score */}
-                    <Card className="p-6 border border-border mb-4">
+                    <Card className="p-6 bg-gradient-to-r from-blue-100 to-pink-100 border-0 shadow-md mb-4">
                       <div className="flex justify-between items-center">
-                        <span className="text-sm font-semibold uppercase tracking-wide">Overall Score</span>
-                        <span className="text-3xl font-bold text-accent">{result.overallScore.toFixed(1)}%</span>
+                        <span className="text-sm font-semibold uppercase tracking-wide text-gray-800">Overall Score</span>
+                        <span className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+                          {result.overallScore.toFixed(1)}%
+                        </span>
                       </div>
                     </Card>
 
                     {/* Breakdown */}
-                    <Card className="p-6 border border-border">
-                      <h4 className="text-xs font-semibold uppercase tracking-wider mb-4">Score Breakdown</h4>
+                    <Card className="p-6 bg-white shadow-md">
+                      <h4 className="text-xs font-semibold uppercase tracking-wider mb-4 text-gray-700">Score Breakdown</h4>
                       <div className="space-y-3 text-sm">
                         {Object.entries(result.breakdown).map(([key, value]: [string, any]) => (
                           <div key={key} className="flex justify-between items-center">
-                            <span className="uppercase tracking-wide text-xs">
+                            <span className="uppercase tracking-wide text-xs text-gray-600">
                               {key.replace(/_/g, ' ')}
                             </span>
                             <div className="flex items-center gap-3">
-                              <div className="w-32 h-2 bg-secondary rounded-full overflow-hidden">
+                              <div className="w-32 h-2 bg-gray-200 rounded-full overflow-hidden">
                                 <div 
-                                  className="h-full bg-accent transition-all duration-500"
+                                  className="h-full bg-gradient-to-r from-blue-500 to-pink-500 transition-all duration-500"
                                   style={{ width: `${value}%` }}
                                 />
                               </div>
-                              <span className="font-semibold w-12 text-right">{value.toFixed(1)}%</span>
+                              <span className="font-semibold w-12 text-right text-gray-900">{value.toFixed(1)}%</span>
                             </div>
                           </div>
                         ))}
@@ -146,41 +150,45 @@ const AgentDetail = () => {
               {result && (
                 <>
                   {/* Technical Metrics */}
-                  <Card className="p-6 border border-border">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4">Technical Metrics</h3>
+                  <Card className="p-6 bg-[#6366F11A] shadow-md">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-gray-800">Technical Metrics</h3>
                     <div className="space-y-3 text-sm">
-                      <div className="flex justify-between py-2 border-b border-border">
-                        <span className="text-muted-foreground uppercase tracking-wide text-xs">Processing Time</span>
-                        <span className="font-mono font-semibold">{result.technical.processingTime}ms</span>
+                      <div className="flex justify-between py-2 border-b border-gray-300">
+                        <span className="text-gray-600 uppercase tracking-wide text-xs">Processing Time</span>
+                        <span className="font-mono font-semibold text-gray-900">{result.technical.processingTime}ms</span>
                       </div>
-                      <div className="flex justify-between py-2 border-b border-border">
-                        <span className="text-muted-foreground uppercase tracking-wide text-xs">Token Count</span>
-                        <span className="font-mono font-semibold">{result.technical.tokenCount}</span>
+                      <div className="flex justify-between py-2 border-b border-gray-300">
+                        <span className="text-gray-600 uppercase tracking-wide text-xs">Token Count</span>
+                        <span className="font-mono font-semibold text-gray-900">{result.technical.tokenCount}</span>
                       </div>
-                      <div className="flex justify-between py-2 border-b border-border">
-                        <span className="text-muted-foreground uppercase tracking-wide text-xs">Efficiency</span>
-                        <span className="font-semibold">{result.technical.efficiency.toFixed(1)}%</span>
+                      <div className="flex justify-between py-2 border-b border-gray-300">
+                        <span className="text-gray-600 uppercase tracking-wide text-xs">Efficiency</span>
+                        <span className="font-semibold text-gray-900">{result.technical.efficiency.toFixed(1)}%</span>
                       </div>
                       <div className="flex justify-between py-2">
-                        <span className="text-muted-foreground uppercase tracking-wide text-xs">Consensus Rate</span>
-                        <span className="font-semibold text-accent">{result.technical.consensusRate.toFixed(1)}%</span>
+                        <span className="text-gray-600 uppercase tracking-wide text-xs">Consensus Rate</span>
+                        <span className="font-semibold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+                          {result.technical.consensusRate.toFixed(1)}%
+                        </span>
                       </div>
                     </div>
                   </Card>
 
                   {/* Validator Consensus */}
-                  <Card className="p-6 border border-border">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4">Validator Consensus</h3>
+                  <Card className="p-6 bg-[#FEEFFE] shadow-md">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-4 text-gray-800">Validator Consensus</h3>
                     <div className="space-y-3">
                       {result.validators.map((validator: any, idx: number) => (
-                        <div key={idx} className="pb-3 border-b border-border last:border-0">
+                        <div key={idx} className="pb-3 border-b border-gray-300 last:border-0">
                           <div className="flex justify-between items-center mb-1">
-                            <span className="font-mono text-xs">{validator.id}</span>
-                            <span className="font-semibold text-sm">{validator.score.toFixed(1)}%</span>
+                            <span className="font-mono text-xs text-gray-800">{validator.id}</span>
+                            <span className="font-semibold text-sm bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+                              {validator.score.toFixed(1)}%
+                            </span>
                           </div>
                           <div className="flex justify-between items-center">
-                            <span className="text-xs text-muted-foreground">Latency</span>
-                            <span className="text-xs font-mono text-muted-foreground">{validator.latency}</span>
+                            <span className="text-xs text-gray-600">Latency</span>
+                            <span className="text-xs font-mono text-gray-600">{validator.latency}</span>
                           </div>
                         </div>
                       ))}
@@ -188,19 +196,19 @@ const AgentDetail = () => {
                   </Card>
 
                   {/* Recommendations */}
-                  <Card className="p-6 border border-border bg-secondary/20">
-                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-3">Recommendations</h3>
-                    <ul className="space-y-2 text-xs text-muted-foreground">
+                  <Card className="p-6 bg-white shadow-md border-2 border-blue-200">
+                    <h3 className="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-800">Recommendations</h3>
+                    <ul className="space-y-2 text-xs text-gray-600">
                       <li className="flex gap-2">
-                        <span className="text-accent">•</span>
+                        <span className="text-blue-600 font-bold">•</span>
                         <span>Your prompt shows {result.breakdown.creativity_score > 85 ? 'strong' : 'moderate'} creativity - consider {result.breakdown.creativity_score > 85 ? 'maintaining' : 'enhancing'} this aspect.</span>
                       </li>
                       <li className="flex gap-2">
-                        <span className="text-accent">•</span>
+                        <span className="text-pink-600 font-bold">•</span>
                         <span>Coherence score is {result.breakdown.prompt_coherence > 90 ? 'excellent' : 'good'} - {result.breakdown.prompt_coherence > 90 ? 'ready for production' : 'minor refinements recommended'}.</span>
                       </li>
                       <li className="flex gap-2">
-                        <span className="text-accent">•</span>
+                        <span className="text-blue-600 font-bold">•</span>
                         <span>Consensus rate of {result.technical.consensusRate.toFixed(1)}% indicates {result.technical.consensusRate > 92 ? 'strong' : 'moderate'} validator agreement.</span>
                       </li>
                     </ul>
@@ -209,27 +217,27 @@ const AgentDetail = () => {
               )}
 
               {!result && (
-                <Card className="p-6 border border-border bg-secondary/10">
-                  <h3 className="text-xs font-semibold uppercase tracking-wider mb-3">How It Works</h3>
-                  <ul className="space-y-2 text-xs text-muted-foreground">
+                <Card className="p-6 bg-gradient-to-br from-blue-50 to-pink-50 shadow-md">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider mb-3 text-gray-800">How It Works</h3>
+                  <ul className="space-y-2 text-xs text-gray-600">
                     <li className="flex gap-2">
-                      <span className="text-accent">1.</span>
+                      <span className="text-blue-600 font-bold">1.</span>
                       <span>Enter your prompt in the text area</span>
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-accent">2.</span>
+                      <span className="text-pink-600 font-bold">2.</span>
                       <span>Select the challenge type you're targeting</span>
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-accent">3.</span>
+                      <span className="text-blue-600 font-bold">3.</span>
                       <span>Click validate to test against live validators</span>
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-accent">4.</span>
+                      <span className="text-pink-600 font-bold">4.</span>
                       <span>Review scores, metrics, and recommendations</span>
                     </li>
                     <li className="flex gap-2">
-                      <span className="text-accent">5.</span>
+                      <span className="text-blue-600 font-bold">5.</span>
                       <span>Iterate and improve before production submission</span>
                     </li>
                   </ul>
