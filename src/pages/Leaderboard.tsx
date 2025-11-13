@@ -25,32 +25,32 @@ const Leaderboard = () => {
   );
 
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-pink-50 to-white">
       <div className="max-w-[1400px] mx-auto p-8 space-y-6">
         {/* Header */}
-        <div className="mb-10">
-          <h1 className="text-3xl font-semibold text-slate-900 mb-1">
+        <div className="mb-8">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent mb-2">
             Miner Leaderboard
           </h1>
-          <p className="text-slate-500 text-sm">Real-time rankings based on latest validation window (rolling 24h average)</p>
+          <p className="text-gray-600 text-sm">Real-time rankings based on latest validation window (rolling 24h average)</p>
         </div>
 
-        <Card className="bg-white border border-slate-200 shadow-sm">
-          <div className="p-6 border-b border-slate-200">
+        <Card className="bg-white shadow-md">
+          <div className="p-6 border-b border-gray-200">
             <div className="flex justify-between items-center">
               <div>
-                <h2 className="text-sm font-semibold text-slate-900 mb-1">Active Miners</h2>
-                <p className="text-xs text-slate-500">{leaderboardData.length} miners currently competing</p>
+                <h2 className="text-sm font-semibold text-gray-900 mb-1">Active Miners</h2>
+                <p className="text-xs text-gray-500">{leaderboardData.length} miners currently competing</p>
               </div>
               
               <div className="flex gap-3">
                 <Input 
                   placeholder="Search miner ID..." 
-                  className="w-64 text-sm border-slate-300 focus:border-slate-400"
+                  className="w-64 text-sm border-gray-300 focus:border-blue-500"
                   value={searchTerm}
                   onChange={(e) => setSearchTerm(e.target.value)}
                 />
-                <Button variant="outline" className="text-xs border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+                <Button variant="outline" className="text-xs border-blue-300 text-blue-600 hover:bg-blue-50">
                   Refresh
                 </Button>
               </div>
@@ -58,7 +58,7 @@ const Leaderboard = () => {
           </div>
 
           {/* Table Header */}
-          <div className="bg-slate-100 py-3 px-6 text-xs font-medium text-slate-600 uppercase tracking-wide grid grid-cols-12 gap-6 border-b border-slate-200">
+          <div className="bg-gradient-to-r from-blue-100 to-pink-100 py-3 px-6 text-xs font-semibold text-gray-800 uppercase tracking-wide grid grid-cols-12 gap-6 border-b border-gray-200">
             <div className="col-span-1">Rank</div>
             <div className="col-span-3">Miner ID</div>
             <div className="col-span-2">Combined Score</div>
@@ -74,42 +74,46 @@ const Leaderboard = () => {
               filteredData.map((item, idx) => (
                 <div
                   key={idx}
-                  className="py-4 px-6 border-b border-slate-100 hover:bg-slate-50 transition-colors grid grid-cols-12 gap-6 items-center"
+                  className={`py-4 px-6 border-b border-gray-100 hover:bg-gradient-to-r hover:from-blue-50 hover:to-pink-50 transition-colors grid grid-cols-12 gap-6 items-center ${
+                    idx === 0 ? 'bg-gradient-to-r from-blue-50 to-pink-50' : ''
+                  }`}
                 >
                   <div className="col-span-1">
-                    <span className="text-lg font-semibold text-slate-900">
+                    <span className="text-lg font-semibold text-gray-900">
                       {idx === 0 ? '🏆' : idx === 1 ? '🥈' : idx === 2 ? '🥉' : `#${idx + 1}`}
                     </span>
                   </div>
                   <div className="col-span-3">
-                    <p className="font-mono text-sm font-medium text-slate-900">{item.miner}</p>
+                    <p className="font-mono text-sm font-medium text-gray-900">{item.miner}</p>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-lg font-semibold text-slate-900">{item.score.toFixed(3)}</span>
+                    <span className="text-lg font-semibold bg-gradient-to-r from-blue-600 to-pink-600 bg-clip-text text-transparent">
+                      {item.score.toFixed(3)}
+                    </span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-sm text-slate-700">{item.submissions.toLocaleString()}</span>
+                    <span className="text-sm text-gray-700">{item.submissions.toLocaleString()}</span>
                   </div>
                   <div className="col-span-2">
-                    <span className="text-sm font-mono text-slate-700">{item.avgLatency}</span>
+                    <span className="text-sm font-mono text-gray-700">{item.avgLatency}</span>
                   </div>
                   <div className="col-span-1">
-                    <span className="text-sm font-semibold text-slate-900">{item.efficiency}%</span>
+                    <span className="text-sm font-semibold text-gray-900">{item.efficiency}%</span>
                   </div>
                   <div className="col-span-1 text-right">
-                    <span className="text-xs text-slate-500">{item.updated}</span>
+                    <span className="text-xs text-gray-500">{item.updated}</span>
                   </div>
                 </div>
               ))
             ) : (
               <div className="py-12 text-center">
-                <p className="text-sm text-slate-500">No miners found matching "{searchTerm}"</p>
+                <p className="text-sm text-gray-500">No miners found matching "{searchTerm}"</p>
               </div>
             )}
           </div>
 
-          <div className="p-6 border-t border-slate-200 text-center">
-            <Button variant="outline" className="text-xs border-slate-300 text-slate-600 hover:bg-slate-50 hover:text-slate-900">
+          <div className="p-6 border-t border-gray-200 text-center">
+            <Button variant="outline" className="text-xs border-blue-300 text-blue-600 hover:bg-blue-50">
               Load More Miners
             </Button>
           </div>
@@ -117,34 +121,34 @@ const Leaderboard = () => {
 
         {/* Stats Summary */}
         <div className="grid grid-cols-4 gap-6 mt-6">
-          <Card className="bg-white border border-slate-200 shadow-sm p-5">
-            <div className="text-xs font-medium text-slate-500 mb-2">Top Score</div>
-            <div className="text-2xl font-semibold text-slate-900">{leaderboardData[0].score.toFixed(3)}</div>
-            <div className="text-xs text-slate-500 mt-1">{leaderboardData[0].miner}</div>
+          <Card className="bg-[#6366F11A] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-2">TOP SCORE</div>
+            <div className="text-3xl font-bold text-gray-900">{leaderboardData[0].score.toFixed(3)}</div>
+            <div className="text-xs text-gray-600 mt-2">{leaderboardData[0].miner}</div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-5">
-            <div className="text-xs font-medium text-slate-500 mb-2">Avg Score</div>
-            <div className="text-2xl font-semibold text-slate-900">
+          <Card className="bg-[#FEEFFE] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-2">AVG SCORE</div>
+            <div className="text-3xl font-bold text-gray-900">
               {(leaderboardData.reduce((acc, curr) => acc + curr.score, 0) / leaderboardData.length).toFixed(3)}
             </div>
-            <div className="text-xs text-slate-500 mt-1">Across all miners</div>
+            <div className="text-xs text-gray-600 mt-2">Across all miners</div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-5">
-            <div className="text-xs font-medium text-slate-500 mb-2">Total Submissions</div>
-            <div className="text-2xl font-semibold text-slate-900">
+          <Card className="bg-[#6366F11A] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-2">TOTAL SUBMISSIONS</div>
+            <div className="text-3xl font-bold text-gray-900">
               {leaderboardData.reduce((acc, curr) => acc + curr.submissions, 0).toLocaleString()}
             </div>
-            <div className="text-xs text-slate-500 mt-1">Last 24 hours</div>
+            <div className="text-xs text-gray-600 mt-2">Last 24 hours</div>
           </Card>
 
-          <Card className="bg-white border border-slate-200 shadow-sm p-5">
-            <div className="text-xs font-medium text-slate-500 mb-2">Avg Efficiency</div>
-            <div className="text-2xl font-semibold text-slate-900">
+          <Card className="bg-[#FEEFFE] shadow-md p-6">
+            <div className="text-xs font-semibold text-gray-600 mb-2">AVG EFFICIENCY</div>
+            <div className="text-3xl font-bold text-gray-900">
               {(leaderboardData.reduce((acc, curr) => acc + curr.efficiency, 0) / leaderboardData.length).toFixed(1)}%
             </div>
-            <div className="text-xs text-slate-500 mt-1">Network average</div>
+            <div className="text-xs text-gray-600 mt-2">Network average</div>
           </Card>
         </div>
       </div>

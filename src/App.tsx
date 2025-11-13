@@ -7,7 +7,7 @@ import Header from "./components/Header";
 import Dashboard from "./pages/Dashboard";
 import Leaderboard from "./pages/Leaderboard";
 import Validators from "./pages/Validators";
-import AgentDetail from "./pages/AgentDetail";
+import AgentDetail from "./pages/PromptValidator";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
